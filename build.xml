@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     udup - unduplicate
+     Search a directory for duplicate files.
+     
+     Dominik Lang
+     ====================================================================== -->
+<project name="udup" default="default">
+    <description>
+            Search a directory for duplicate files.
+    </description>
+	
+	<property name="python35" value="C:/Program Files/Python35/python.exe" />
+
+    <!-- ================================= 
+          target: default
+         ================================= -->
+    <target name="default" depends="zipapp" description="Search a directory for duplicate files." />
+	
+    <!-- ================================= 
+          target: clean
+         ================================= -->
+    <target name="clean" description="Clean the project.">
+        <delete dir="deploy" />
+    </target>
+
+
+    <!-- ================================= 
+          target: zipapp
+         ================================= -->
+    <target name="zipapp">
+    	<mkdir dir="deploy"/>
+    	<exec executable="${python35}">
+    		<arg line="-m zipapp src  -m main:main -o deploy/udup.pyz" />
+    	</exec>
+    </target>
+
+</project>

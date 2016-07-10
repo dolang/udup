@@ -42,12 +42,12 @@ Usage
 Run the Ant ``build.xml`` to create a *zippapp*, or run ``main.py``
 directly.  You probably have to adjust the path to your Python 3.5
 executable in ``build.xml`` before running it for the first time.  The
-*zippapp* takes one argument, the directory in which to search for 
+program takes one argument, the directory in which to search for 
 duplicates. Windows::
 
    > python udup.pyz "path\to\directory_with_duplicate_files"
    
-   or
+     - or -
    
    > python main.py "path\to\directory_with_duplicate_files"
    
@@ -55,10 +55,12 @@ Linux::
 
    $ python3.5 udup.pyz "path/to/directory_with_duplicate_files"
    
-   or
+     - or -
    
    $ chmod +x main.py
    $ ./main.py "path/to/directory_with_duplicate_files"
+   
+* Search the directory and its sub-folders recursively with ``-R``.
 
 
 License
@@ -76,16 +78,16 @@ I'm offering it under an Apache v2.0 license as well. In that case, the
 terms in the LICENSE file, the NOTICE file and the following notice
 apply:
 
-   Copyright © 2016 Dominik Lang
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+|    Copyright © 2016 Dominik Lang
+| 
+|    Licensed under the Apache License, Version 2.0 (the "License");
+|    you may not use this file except in compliance with the License.
+|    You may obtain a copy of the License at
+| 
+|        http://www.apache.org/licenses/LICENSE-2.0
+| 
+|    Unless required by applicable law or agreed to in writing, software
+|    distributed under the License is distributed on an "AS IS" BASIS,
+|    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+|    See the License for the specific language governing permissions and
+|    limitations under the License.

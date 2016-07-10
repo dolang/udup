@@ -59,6 +59,8 @@ Linux::
    
    $ chmod +x main.py
    $ ./main.py "path/to/directory_with_duplicate_files"
+   
+* Search the directory and its sub-folders recursively with ``-R``.
 
 
 License

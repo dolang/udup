@@ -22,7 +22,15 @@ def parse_arguments():
 
 
 def build_stats(directory, recursive=False):
-    """Analyse the files in `directory` and create signatures."""
+    """Analyse the files in `directory` and create signatures.
+    
+    :param str directory: the root directory; if falsy, defaults to
+                          `os.curdir`
+    :param bool recursive: whether or not to include files contained
+                           in subfolders of the root directory
+    """
+    if not directory:
+        directory = os.curdir
     try:
         paths = os.listdir(directory)
     except FileNotFoundError as e:

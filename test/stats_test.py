@@ -24,7 +24,7 @@ class TestStats(unittest.TestCase):
         with self.assertRaises(ValueError):
             stats = Stats('doesnt-exist')
         
-        # must be a file not a directory:
+        # must be a file, not a directory:
         with self.assertRaises(ValueError):
             stats = Stats('a')
     
@@ -62,6 +62,7 @@ class TestStats(unittest.TestCase):
                "       hash={})>")
         expected_repr = fmt.format(stats.path, stats.modified, stats.size, stats_hash)
         self.assertMultiLineEqual(repr(stats), expected_repr)
+
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
-'''
-Created on 13.07.2016
+"""
+Test the class `Stats` of `stats.py`.
 
 @author: Dominik Lang
-'''
+"""
 import os
 import unittest
 

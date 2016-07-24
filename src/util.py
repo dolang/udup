@@ -4,9 +4,11 @@ Utilities.
 
 :author: Dominik Lang
 """
+
 import functools
 import types
 import weakref
+
 
 class lazy(object):
     """A memoizing decorator for callables with a single result.

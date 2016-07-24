@@ -5,6 +5,7 @@ Search a directory for duplicate files.
 
 :author: Dominik Lang
 """
+
 import argparse
 import itertools
 import os

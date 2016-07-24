@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 """
 Test the functions of `main.py`.
 
 :author: Dominik Lang
 """
+
 import binascii
 from contextlib import redirect_stdout
 import io

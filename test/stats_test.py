@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 """
 Test the class `Stats` of `stats.py`.
 
-@author: Dominik Lang
+:author: Dominik Lang
 """
+
 import os
 import unittest
 
@@ -66,5 +68,4 @@ class TestStats(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    # import sys; sys.argv = ['', 'Test.testStats']
     unittest.main()

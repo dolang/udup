@@ -1,12 +1,15 @@
+# -*- coding: utf-8 -*-
 """
 Test the `lazy` decorator of `util.py`.
 
-@author: Dominik Lang
+:author: Dominik Lang
 """
-import unittest
-from util import lazy
+
 from contextlib import redirect_stdout
 from io import StringIO
+import unittest
+
+from util import lazy
 
 
 class Test(unittest.TestCase):
@@ -74,5 +77,4 @@ def func():
 
 
 if __name__ == "__main__":
-    # import sys; sys.argv = ['', 'Test.test_lazy']
     unittest.main()

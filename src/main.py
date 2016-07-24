@@ -6,9 +6,10 @@ Search a directory for duplicate files.
 :author: Dominik Lang
 """
 import argparse
-import hashlib
 import itertools
 import os
+
+from stats import Stats
 
 
 def parse_arguments():
@@ -50,7 +51,7 @@ def _build_stats(directory, file_paths, stats, errors):
         for path in file_paths:
             try:
                 assert os.path.isfile(path)
-                stats.append((os.path.abspath(path), _stat(path), _hash(path)))
+                stats.append(Stats(path))
             except Exception as e:
                 errors.append((os.path.abspath(path), e))
     finally:
@@ -72,43 +73,40 @@ def _build_stats_recursively(directory, stats, errors):
     return _build_stats(directory, file_paths, stats, errors)
 
 
-def _stat(file_name):
-    """Retrieve file size and modification time from the file system."""
-    stat = os.lstat(file_name)
-    return stat.st_size, stat.st_mtime
-
-
-def _hash(file_name):
-    """Create an MD5 hash from a file's content."""
-    with open(file_name, 'rb') as file:
-        hasher = hashlib.md5()
-        data = file.read()
-        hasher.update(data)
-        return hasher.digest()
-
-
 def identify_duplicates(stats):
-    """Search the file signatures for duplicates."""
+    """Search the file signatures for duplicates.
+    
+    :param list[Stats] stats: the file signatures
+    :return: a generator of all duplicates or `None` if `stats` is falsy
+    """
     if not stats:
         return
     # else:
-    stats.sort(key=lambda t: (t[2], t[1]))
-    # right now, only group by the file's hash. Include length later:
-    grouped = itertools.groupby(stats, lambda t: t[2])
-    for _, group in grouped:
-        group = list(group)
-        if len(group) > 1:
-            for dupe in group[1:]:
-                yield dupe
+    stats.sort(key=lambda s: s.size)
+    size_grouped = itertools.groupby(stats, lambda s: s.size)
+    for _, size_group in size_grouped:
+        size_group = list(size_group)
+        if len(size_group) > 1:
+            size_group.sort(key=lambda s: (s.hash, s.modified))
+            grouped = itertools.groupby(size_group, lambda s: s.hash)
+            for _, group in grouped:
+                group = list(group)
+                if len(group) > 1:
+                    for dupe in group[1:]:
+                        yield dupe
 
 
 def process_duplicates(dupes):
-    """Print the duplicates' paths to the standard output."""
+    """Print the duplicates' paths to the standard output.
+    
+    :param dupes: the stats of files identified as duplicates
+    :type dupes: Iterator[Stats]
+    """
     dupes = list(dupes)
     if dupes:
         print('Duplicates:')
         for dupe in dupes:
-            print('  ', dupe[0])
+            print('  ', dupe.path)
 
 
 def main():
